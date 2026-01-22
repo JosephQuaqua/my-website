@@ -24,8 +24,9 @@ function Dashboard() {
           <li>
   <Link to="/savings">Savings</Link>
 </li>
-
-          <li>Loan</li>
+          <li>
+  <Link to="/loan">Loan</Link>
+</li>
           <li>Investment</li>
           <li>Profile</li>
           <li>Exchange Service (Online for cash)</li>

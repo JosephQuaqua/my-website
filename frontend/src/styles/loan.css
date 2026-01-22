@@ -1,0 +1,86 @@
+.loan-container {
+  padding: 40px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: white;
+}
+
+.loan-form {
+  background: white;
+  color: #1e293b;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.loan-form input,
+.loan-form select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.loan-form button {
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.loan-status {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.pending {
+  background: orange;
+}
+
+.overdue {
+  background: crimson;
+}
+
+.loan-dashboard {
+  background: white;
+  color: #1e293b;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.loan-summary p {
+  margin: 8px 0;
+}
+
+.progress-bar {
+  height: 12px;
+  background: #ddd;
+  border-radius: 20px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #2563eb;
+  transition: width 1s linear;
+}
+
+.pay-btn {
+  padding: 12px;
+  width: 100%;
+  background: #10b981;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -1,50 +1,55 @@
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 import "../styles/dashboard.css";
-
-
 
 function Dashboard() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear stored login data
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-
-    // Redirect to login page
     navigate("/");
   };
 
   return (
-    <div className="dashboard-container">
-      <aside className="sidebar">
-        <h2 className="logo">Student Finance</h2>
-        <ul>
-          <li>
-  <Link to="/savings">Savings</Link>
-</li>
-          <li>
-  <Link to="/loan">Loan</Link>
-</li>
-          <li>Investment</li>
-          <li>Profile</li>
-          <li>Exchange Service (Online for cash)</li>
-          <li>Monitors</li>
-          <li className="logout" onClick={handleLogout}>
-            Logout
-          </li>
-        </ul>
-      </aside>
+    <div className="page-container">
+      <Sidebar handleLogout={handleLogout} />
 
       <main className="main-content">
         <header className="topbar">
-          <h3>Welcome, Student</h3>
+          <div className="user-profile">
+            <img
+              src="https://i.pravatar.cc/150?img=3"
+              alt="User"
+            />
+            <span>Welcome, Student</span>
+          </div>
         </header>
 
         <section className="content-area">
           <h2>Dashboard Overview</h2>
-          <p>Select a service from the sidebar.</p>
+
+          <div className="dashboard-cards">
+            <div className="card savings">
+              <h3>Total Savings</h3>
+              <p>₹0.000</p>
+            </div>
+
+            <div className="card loan">
+              <h3>Active Loan</h3>
+              <p>₹0.000</p>
+            </div>
+
+            <div className="card investment">
+              <h3>Total Investment</h3>
+              <p>₹0.000</p>
+            </div>
+
+            <div className="card exchange">
+              <h3>Exchange Balance</h3>
+              <p>₹0.000</p>
+            </div>
+          </div>
         </section>
       </main>
     </div>

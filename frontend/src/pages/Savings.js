@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/savings.css";
 
 function Savings() {
+  const navigate = useNavigate();
+
   const fakeData = {
     balance: 12500,
     savingType: "Monthly",
@@ -10,7 +13,14 @@ function Savings() {
 
   return (
     <div className="savings-container">
-      <h2>Savings Account</h2>
+
+      {/* Back Arrow */}
+      <div className="back-header">
+        <button className="back-btn" onClick={() => navigate("/dashboard")}>
+          ← Back
+        </button>
+        <h2>Savings Account</h2>
+      </div>
 
       <div className="savings-cards">
         <div className="card">
@@ -38,6 +48,7 @@ function Savings() {
         <button className="primary-btn">Add Savings</button>
         <button className="secondary-btn">View Transactions</button>
       </div>
+
     </div>
   );
 }

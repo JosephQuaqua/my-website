@@ -6,6 +6,8 @@ import ForgotPassword from "./pages/ForgetPassword";
 import Dashboard from "./pages/Dashboard";
 import Loan from "./pages/Loan";
 import PayLoan from "./pages/PayLoan";
+import ApplyLoan from "./pages/ApplyLoan";
+
 
 
 
@@ -20,6 +22,8 @@ function App() {
       <Route path="/savings" element={<Savings />} />
       <Route path="/loan" element={<Loan />} />
       <Route path="/pay-loan" element={<PayLoan />} />
+      <Route path="/apply-loan" element={<ApplyLoan />} />
+
 
       
 

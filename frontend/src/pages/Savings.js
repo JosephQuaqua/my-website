@@ -108,6 +108,11 @@ function Savings() {
             value={loanAmount}
             onChange={(e) => setLoanAmount(e.target.value)}
           />
+          <input
+            type="date"
+            placeholder="Enter Duration (in months)"
+            onChange={(e) => setLoanAmount(e.target.value)}
+          />
           
 
           <button className="loan-btn" onClick={handleLoanApply}>

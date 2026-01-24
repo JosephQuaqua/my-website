@@ -131,9 +131,16 @@ function ApplyLoan() {
             Submit Application
           </button>
 
-        </form>
+          
+
+        </form>       
+         <button className="back-btn" onClick={() => window.history.back()}>
+          Back to Loan
+        </button>
       </div>
+      
     </div>
+    
   );
 }
 

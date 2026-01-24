@@ -1,16 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"; // Added BrowserRouter here
-import Savings from "./pages/Savings";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Pages
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ForgotPassword from "./pages/ForgetPassword";
+import ForgotPassword from "./pages/ForgetPassword"; 
 import Dashboard from "./pages/Dashboard";
+import Savings from "./pages/Savings";
 import Loan from "./pages/Loan";
 import PayLoan from "./pages/PayLoan";
 import ApplyLoan from "./pages/ApplyLoan";
 
 function App() {
   return (
-    // The basename must match your GitHub repository name exactly
+    // 👇 FIX: Added basename="/my-website" to match your GitHub repository name
     <BrowserRouter basename="/my-website">
       <Routes>
         <Route path="/" element={<Login />} />

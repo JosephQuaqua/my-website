@@ -1,39 +1,27 @@
 import { Link } from "react-router-dom";
-import "../styles/sidebar.css";
+import "../styles/dashboard.css";
 
-function Sidebar({ handleLogout }) {
+function Sidebar({ handleLogout, isOpen, closeDrawer }) {
   return (
-    <aside className="sidebar">
-      <h2 className="logo">Student Finance</h2>
+    <>
+      {/* Overlay */}
+      {isOpen && <div className="overlay" onClick={closeDrawer}></div>}
 
-      <ul>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/savings">Savings</Link>
-        </li>
-        <li>
-          <Link to="/loan">Loan</Link>
-        </li>
-        <li>
-          <Link to="/investment">Investment</Link>
-        </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-        <li>
-          <Link to="/exchange">Exchange Service</Link>
-        </li>
-        <li>
-          <Link to="/monitors">Monitors</Link>
-        </li>
+      <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+        <h2 className="logo">Student Finance</h2>
 
-        <li className="logout" onClick={handleLogout}>
-          Logout
-        </li>
-      </ul>
-    </aside>
+        <ul>
+          <li><Link to="/dashboard" onClick={closeDrawer}>Dashboard</Link></li>
+          <li><Link to="/savings" onClick={closeDrawer}>Savings</Link></li>
+          <li><Link to="/loan" onClick={closeDrawer}>Loan</Link></li>
+          <li><Link to="/investment" onClick={closeDrawer}>Investment</Link></li>
+          <li><Link to="/exchange" onClick={closeDrawer}>Exchange</Link></li>
+         
+          
+          <li className="logout" onClick={handleLogout}>Logout</li>
+        </ul>
+      </aside>
+    </>
   );
 }
 

@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.746aa8a7.css",
+    "main.js": "/static/js/main.6373d753.js",
+    "static/media/upi-qr.png": "/static/media/upi-qr.84e80d349374cc197fc7.png",
+    "index.html": "/index.html",
+    "main.746aa8a7.css.map": "/static/css/main.746aa8a7.css.map",
+    "main.6373d753.js.map": "/static/js/main.6373d753.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.746aa8a7.css",
+    "static/js/main.6373d753.js"
+  ]
+}

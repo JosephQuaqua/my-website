@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Loan from "./pages/Loan";
 import PayLoan from "./pages/PayLoan";
 import ApplyLoan from "./pages/ApplyLoan";
+import Investment from "./pages/Investment";
 
 
 
@@ -23,6 +24,7 @@ function App() {
       <Route path="/loan" element={<Loan />} />
       <Route path="/pay-loan" element={<PayLoan />} />
       <Route path="/apply-loan" element={<ApplyLoan />} />
+      <Route path="/investment" element={<Investment />} />
 
 
       

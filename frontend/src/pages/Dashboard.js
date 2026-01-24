@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import "../styles/dashboard.css";
 
 function Dashboard() {
   const navigate = useNavigate();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -11,12 +13,30 @@ function Dashboard() {
     navigate("/");
   };
 
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
   return (
     <div className="page-container">
-      <Sidebar handleLogout={handleLogout} />
+
+      {/* Navigation Drawer */}
+      <Sidebar
+        handleLogout={handleLogout}
+        isOpen={drawerOpen}
+        closeDrawer={() => setDrawerOpen(false)}
+      />
 
       <main className="main-content">
+
+        {/* Topbar */}
         <header className="topbar">
+
+          {/* Drawer Button */}
+          <button className="menu-btn" onClick={toggleDrawer}>
+            ☰
+          </button>
+
           <div className="user-profile">
             <img
               src="https://i.pravatar.cc/150?img=3"
@@ -24,6 +44,7 @@ function Dashboard() {
             />
             <span>Welcome, Student</span>
           </div>
+
         </header>
 
         <section className="content-area">
@@ -51,6 +72,7 @@ function Dashboard() {
             </div>
           </div>
         </section>
+
       </main>
     </div>
   );

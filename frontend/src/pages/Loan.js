@@ -1,10 +1,23 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
-
 import "../styles/loan.css";
 
 function Loan() {
   const navigate = useNavigate();
+
+  // Drawer state
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/");
+  };
 
   // Dummy Loan Data (You will connect backend later)
   const loanAmount = 50000;
@@ -22,74 +35,95 @@ function Loan() {
   const loanStatus = daysLeft < 0 ? "overdue" : "active";
 
   return (
-    <div className="loan-container">
-      <div className="loan-header">
-        <h2>
-          Loan Dashboard
-          <span className={`status-badge ${loanStatus}`}>
-            {loanStatus === "active" ? "Active Loan" : "Overdue"}
-          </span>
-        </h2>
-        <p>Manage your student loan and track repayments.</p>
-      </div>
+    <div className="page-container">
 
-      {/* Loan Cards */}
-      <div className="loan-cards">
-        <div className="loan-card">
-          <h4>Total Loan Amount</h4>
-          <h2>₹{loanAmount.toLocaleString()}</h2>
+      {/* Sidebar */}
+      <Sidebar
+        isOpen={drawerOpen}
+        closeDrawer={() => setDrawerOpen(false)}
+        handleLogout={handleLogout}
+      />
+
+      <main className="loan-container">
+
+        {/* Topbar with Toggle */}
+        <div className="topbar">
+          <button className="menu-btn" onClick={toggleDrawer}>
+            ☰
+          </button>
         </div>
 
-        <div className="loan-card">
-          <h4>Amount Paid</h4>
-          <h2>₹{amountPaid.toLocaleString()}</h2>
+        <div className="loan-header">
+          <h2>
+            Loan Dashboard
+            <span className={`status-badge ${loanStatus}`}>
+              {loanStatus === "active" ? "Active Loan" : "Overdue"}
+            </span>
+          </h2>
+          <p>Manage your student loan and track repayments.</p>
         </div>
 
-        <div className="loan-card">
-          <h4>Remaining Balance</h4>
-          <h2 className="danger">₹{remainingBalance.toLocaleString()}</h2>
+        {/* Loan Cards */}
+        <div className="loan-cards">
+          <div className="loan-card">
+            <h4>Total Loan Amount</h4>
+            <h2>₹{loanAmount.toLocaleString()}</h2>
+          </div>
+
+          <div className="loan-card">
+            <h4>Amount Paid</h4>
+            <h2>₹{amountPaid.toLocaleString()}</h2>
+          </div>
+
+          <div className="loan-card">
+            <h4>Remaining Balance</h4>
+            <h2 className="danger">₹{remainingBalance.toLocaleString()}</h2>
+          </div>
+
+          <div className="loan-card">
+            <h4>Interest Rate</h4>
+            <h2>{interestRate}%</h2>
+          </div>
         </div>
 
-        <div className="loan-card">
-          <h4>Interest Rate</h4>
-          <h2>{interestRate}%</h2>
+        {/* Countdown */}
+        <div className={`countdown ${loanStatus}`}>
+          {loanStatus === "active"
+            ? `Due in ${daysLeft} days`
+            : `Loan Overdue by ${Math.abs(daysLeft)} days`}
         </div>
-      </div>
 
-      {/* Countdown */}
-      <div className={`countdown ${loanStatus}`}>
-        {loanStatus === "active"
-          ? `Due in ${daysLeft} days`
-          : `Loan Overdue by ${Math.abs(daysLeft)} days`}
-      </div>
+        {/* Actions */}
+        <div className="loan-actions">
+          <button
+            className="apply-btn"
+            onClick={() => navigate("/apply-loan")}
+          >
+            Apply New Loan
+          </button>
 
-      {/* Actions */}
-      <div className="loan-actions">
-        <button
-          className="apply-btn"
-          onClick={() => navigate("/apply-loan")}
-        >
-          Apply New Loan
-        </button>
+          <button
+            className="pay-btn"
+            onClick={() => navigate("/pay-loan")}
+          >
+            Pay Loan
+          </button>
 
-        <button
-          className="pay-btn"
-          onClick={() => navigate("/pay-loan")}
-        >
-          Pay Loan
-        </button>
-      </div>
+         
+        </div>
 
-      {/* Info Section */}
-      <div className="loan-info">
-        <h3>Loan Information</h3>
-        <ul>
-          <li>Interest Rate: {interestRate}%</li>
-          <li>Due Date: {dueDate}</li>
-          <li>Minimum Payment required before due date.</li>
-          <li>Late payment may attract penalty charges.</li>
-        </ul>
-      </div>
+        {/* Info Section */}
+        <div className="loan-info">
+          <h3>Loan Information</h3>
+          <ul>
+            <li>Interest Rate: {interestRate}%</li>
+            <li>Due Date: {dueDate}</li>
+            <li>Minimum Payment required before due date.</li>
+            <li>Late payment may attract penalty charges.</li>
+          </ul>
+        </div>
+
+      </main>
     </div>
   );
 }

@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/my-website/static/css/main.b776a6b0.css",
-    "main.js": "/my-website/static/js/main.23865332.js",
+    "main.css": "/my-website/static/css/main.7044677f.css",
+    "main.js": "/my-website/static/js/main.41b64460.js",
     "static/media/upi-qr.png": "/my-website/static/media/upi-qr.84e80d349374cc197fc7.png",
     "index.html": "/my-website/index.html",
-    "main.b776a6b0.css.map": "/my-website/static/css/main.b776a6b0.css.map",
-    "main.23865332.js.map": "/my-website/static/js/main.23865332.js.map"
+    "main.7044677f.css.map": "/my-website/static/css/main.7044677f.css.map",
+    "main.41b64460.js.map": "/my-website/static/js/main.41b64460.js.map"
   },
   "entrypoints": [
-    "static/css/main.b776a6b0.css",
-    "static/js/main.23865332.js"
+    "static/css/main.7044677f.css",
+    "static/js/main.41b64460.js"
   ]
 }

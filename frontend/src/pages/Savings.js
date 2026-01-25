@@ -5,13 +5,9 @@ import "../styles/savings.css";
 
 function Savings() {
   const navigate = useNavigate();
-
-  // Drawer state
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
+  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -19,41 +15,10 @@ function Savings() {
     navigate("/");
   };
 
-  const fakeData = {
-    balance: 12500,
-    savingType: "Monthly",
-    duration: "3 Months",
-    status: "Active",
-  };
-
-  const [loanAmount, setLoanAmount] = useState("");
-
-  const handleLoanApply = () => {
-    const amount = Number(loanAmount);
-
-    if (fakeData.balance <= 0) {
-      alert("You cannot apply for a loan without savings.");
-      return;
-    }
-
-    if (!amount || amount <= 0) {
-      alert("Enter a valid loan amount.");
-      return;
-    }
-
-    if (amount > fakeData.balance) {
-      alert("Loan amount cannot be more than your savings balance.");
-      return;
-    }
-
-    alert("Loan request submitted successfully!");
-    navigate("/loan");
-  };
+  const balance = 12500;
 
   return (
     <div className="page-container">
-
-      {/* Sidebar */}
       <Sidebar
         isOpen={drawerOpen}
         closeDrawer={() => setDrawerOpen(false)}
@@ -61,65 +26,60 @@ function Savings() {
       />
 
       <main className="main-content">
-
-        {/* Topbar with Toggle Button */}
         <header className="topbar">
-          <button className="menu-btn" onClick={toggleDrawer}>
-            ☰
-          </button>
+          <button className="menu-btn" onClick={toggleDrawer}>☰</button>
           <h2>Savings Account</h2>
         </header>
 
-        {/* Savings Cards */}
+        {/* CARDS */}
         <div className="savings-cards">
           <div className="card">
             <h4>Current Balance</h4>
-            <p>₹ {fakeData.balance}</p>
+            <p>₹ {balance}</p>
           </div>
 
           <div className="card">
             <h4>Saving Type</h4>
-            <p>{fakeData.savingType}</p>
+            <p>Monthly</p>
           </div>
 
           <div className="card">
             <h4>Duration</h4>
-            <p>{fakeData.duration}</p>
+            <p>3 Months</p>
           </div>
 
           <div className="card">
             <h4>Status</h4>
-            <p className="status">{fakeData.status}</p>
+            <p className="status">Active</p>
           </div>
         </div>
 
+        {/* ACTION BUTTONS */}
         <div className="actions">
-          <button className="primary-btn">Add Savings</button>
-          <button className="secondary-btn">View Transactions</button>
+          <button
+            className="primary-btn"
+            onClick={() => navigate("/saving-payment")}
+          >
+            Add Savings
+          </button>
+
+          <button className="secondary-btn">
+            View Transactions
+          </button>
         </div>
 
+        {/* APPLY LOAN SECTION */}
         <div className="loan-from-savings">
           <h3>Apply Loan From Savings</h3>
           <p>You can borrow up to your available savings balance.</p>
 
-          <input
-            type="number"
-            placeholder="Enter Loan Amount"
-            value={loanAmount}
-            onChange={(e) => setLoanAmount(e.target.value)}
-          />
-          <input
-            type="date"
-            placeholder="Enter Duration (in months)"
-            onChange={(e) => setLoanAmount(e.target.value)}
-          />
-          
-
-          <button className="loan-btn" onClick={handleLoanApply}>
+          <button
+            className="loan-btn"
+            onClick={() => navigate("/loan-application")}
+          >
             Apply Loan
           </button>
         </div>
-
       </main>
     </div>
   );

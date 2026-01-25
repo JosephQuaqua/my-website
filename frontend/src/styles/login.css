@@ -199,3 +199,31 @@ body {
     font-size: 22px;
   }
 }
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container .auth-input {
+  width: 100%;
+  padding-right: 60px; /* Leaves room for the text so it doesn't overlap */
+}
+
+.toggle-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #007bff; /* Blue color, adjust to match your theme */
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.toggle-button:hover {
+  text-decoration: underline;
+}

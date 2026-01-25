@@ -10,6 +10,8 @@ import Savings from "./pages/Savings";
 import Loan from "./pages/Loan";
 import PayLoan from "./pages/PayLoan";
 import ApplyLoan from "./pages/ApplyLoan";
+import SavingPayment from "./pages/SavingPayment";
+import LoanApplication from "./pages/LoanApplication";
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
         <Route path="/loan" element={<Loan />} />
         <Route path="/pay-loan" element={<PayLoan />} />
         <Route path="/apply-loan" element={<ApplyLoan />} />
+        <Route path="/saving-payment" element={<SavingPayment />} />
+        <Route path="/loan-application" element={<LoanApplication />} />
+        
       </Routes>
     </BrowserRouter>
   );

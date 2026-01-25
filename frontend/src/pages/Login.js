@@ -7,10 +7,13 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle visibility
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    // Prevent page reload on form submit
+    e.preventDefault();
+
     if (!email || !password) {
       setError("Please enter both email and password");
       return;
@@ -32,48 +35,36 @@ export default function Login() {
 
         {error && <div className="alert alert-error">{error}</div>}
 
-        <input
-          className="auth-input"
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        {/* Password Container */}
-        <div className="password-input-wrapper" style={{ position: 'relative', width: '100%' }}>
+        <form onSubmit={handleLogin}>
           <input
             className="auth-input"
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ width: '100%', paddingRight: '60px' }} // Space for the text
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              background: 'none',
-              border: 'none',
-              color: '#007bff',
-              cursor: 'pointer',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              textTransform: 'uppercase'
-            }}
-          >
-            {showPassword ? "Hide" : "Show"}
-          </button>
-        </div>
 
-        <button className="auth-button" onClick={handleLogin}>
-          Login
-        </button>
+          <div className="password-container">
+            <input
+              className="auth-input"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="toggle-button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
+
+          <button type="submit" className="auth-button">
+            Login
+          </button>
+        </form>
 
         <div className="auth-links">
           <Link to="/forgot-password">Forgot password?</Link>

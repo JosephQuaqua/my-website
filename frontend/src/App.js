@@ -18,7 +18,7 @@ import Exchange from "./pages/Exchange";
 
 function App() {
   return (
-    // 👇 FIX: Added basename="/my-website" to match your GitHub repository name
+   
     <BrowserRouter basename="/my-website">
       <Routes>
         <Route path="/" element={<Login />} />

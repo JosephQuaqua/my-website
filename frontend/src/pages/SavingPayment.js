@@ -50,7 +50,7 @@ function SavingPayment() {
             <p><strong>UPI ID:</strong> yourname@upi</p>
 
             <img
-              src="/assets/upi-qr.png"
+              src="../assets/upi-qr.png"
               alt="UPI QR Code"
               className="upi-qr"
             />

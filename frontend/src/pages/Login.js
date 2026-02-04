@@ -11,17 +11,27 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleLogin = (e) => {
-    // Prevent page reload on form submit
     e.preventDefault();
+
+    // Clear previous error
+    setError("");
 
     if (!email || !password) {
       setError("Please enter both email and password");
       return;
     }
 
+    // 🔐 Demo Login Credentials
     if (email === "student@test.com" && password === "123456") {
-      setError("");
+
+      // Store authentication data
+      localStorage.setItem("token", "studentToken123");
+      localStorage.setItem("role", "student");
+      localStorage.setItem("user", "Student");
+
+      // Redirect to dashboard
       navigate("/dashboard");
+
     } else {
       setError("Invalid email or password");
     }
@@ -31,11 +41,12 @@ export default function Login() {
     <div className="auth-container">
       <div className="auth-card">
         <h2>Student Login</h2>
-        <p>Access your student loan account</p>
+        <p>Access your student finance account</p>
 
         {error && <div className="alert alert-error">{error}</div>}
 
         <form onSubmit={handleLogin}>
+
           <input
             className="auth-input"
             type="email"
@@ -52,6 +63,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
             <button
               type="button"
               className="toggle-button"
@@ -64,6 +76,7 @@ export default function Login() {
           <button type="submit" className="auth-button">
             Login
           </button>
+
         </form>
 
         <div className="auth-links">
@@ -73,6 +86,7 @@ export default function Login() {
         <div className="auth-footer">
           Don’t have an account? <Link to="/register">Register</Link>
         </div>
+
       </div>
     </div>
   );

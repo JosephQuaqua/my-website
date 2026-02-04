@@ -71,13 +71,13 @@ function Savings() {
         {/* APPLY LOAN SECTION */}
         <div className="loan-from-savings">
           <h3>Apply Loan From Savings</h3>
-          <p>You can borrow up to your available savings balance.</p>
+          <p>You can borrow up to your available savings balance with zero percentage interest</p>
 
           <button
             className="loan-btn"
             onClick={() => navigate("/loan-application")}
           >
-            Apply Loan
+            Apply loan from savings
           </button>
         </div>
       </main>

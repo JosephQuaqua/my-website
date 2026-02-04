@@ -14,6 +14,7 @@ import SavingPayment from "./pages/SavingPayment";
 import LoanApplication from "./pages/LoanApplication";
 import Investment from "./pages/Investment";
 import Exchange from "./pages/Exchange";
+import Monitors from "./pages/Monitors";
  
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/loan-application" element={<LoanApplication />} />
         <Route path="/investment" element={<Investment />} />
         <Route path="/exchange" element={<Exchange />} />
+        <Route path="/monitors" element={<Monitors />} /> 
         
 
       </Routes>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../auth.css";
+import "../styles/forget-password.css";
 
 export default function ForgotPassword() {
   const [otpSent, setOtpSent] = useState(false);

@@ -1,229 +1,147 @@
-/* ===== RESET & FONT ===== */
-* {
-  box-sizing: border-box;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+/* PAGE BACKGROUND */
+.login-page{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#020617,#0f172a);
+  font-family:Inter,sans-serif;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, #c7d2fe, transparent 40%),
-    radial-gradient(circle at bottom right, #e0e7ff, transparent 40%),
-    linear-gradient(135deg, #f8fafc, #eef2ff);
+/* CARD */
+.login-card{
+  width:100%;
+  max-width:420px;
+  padding:40px;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(18px);
+
+  border-radius:22px;
+  color:white;
+
+  box-shadow:0 30px 70px rgba(0,0,0,.5);
+  animation:fadeUp .5s ease;
 }
 
-/* ===== PAGE CONTAINER ===== */
-.auth-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-
-/* ===== CARD ===== */
-.auth-card {
-  width: 100%;
-  max-width: 420px;
-  padding: 38px 32px;
-  border-radius: 22px;
-
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  border: 1px solid rgba(255, 255, 255, 0.4);
-
-  box-shadow:
-    0 30px 70px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
-
-  animation: cardFade 0.6s ease-out;
-}
-
-/* ===== ANIMATION ===== */
-@keyframes cardFade {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.98);
+/* ANIMATION */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
 
-/* ===== TITLE ===== */
-.auth-card h2 {
-  margin: 0;
-  text-align: center;
-  font-size: 26px;
-  font-weight: 700;
-  color: #0f172a;
+/* HEADER */
+.login-header{
+  text-align:center;
+  margin-bottom:30px;
 }
 
-.auth-card p {
-  text-align: center;
-  font-size: 14px;
-  margin: 6px 0 28px;
-  color: #64748b;
+.login-header h2{
+  font-size:26px;
 }
 
-/* ===== INPUTS ===== */
-.auth-input {
-  width: 100%;
-  padding: 15px 16px;
-  margin-bottom: 18px;
-
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
-
-  background: rgba(248, 250, 252, 0.9);
-  font-size: 14px;
-  color: #0f172a;
-
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease,
-    transform 0.15s ease;
+.login-header p{
+  color:#94a3b8;
+  font-size:14px;
 }
 
-.auth-input::placeholder {
-  color: #94a3b8;
+/* INPUT GROUP */
+.input-group{
+  margin-bottom:18px;
 }
 
-.auth-input:focus {
-  outline: none;
-  background: #ffffff;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.2);
-  transform: translateY(-1px);
+.input-group label{
+  font-size:13px;
+  color:#cbd5e1;
 }
 
-/* ===== BUTTON ===== */
-.auth-button {
-  width: 100%;
-  padding: 15px;
-  margin-top: 6px;
-
-  border: none;
-  border-radius: 14px;
-
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
-  color: #ffffff;
-
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 14px 35px rgba(79, 70, 229, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
-
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
+.input-group input{
+  width:100%;
+  margin-top:6px;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  background:#020617;
+  color:white;
 }
 
-.auth-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 45px rgba(79, 70, 229, 0.55);
-  filter: brightness(1.05);
+.input-group input:focus{
+  outline:none;
+  box-shadow:0 0 0 2px #3b82f6;
 }
 
-.auth-button:active {
-  transform: scale(0.96);
+/* PASSWORD */
+.password-group{
+  position:relative;
 }
 
-/* ===== ERROR MESSAGE ===== */
-.alert {
-  padding: 12px 14px;
-  border-radius: 12px;
-  margin-bottom: 18px;
-  font-size: 14px;
+.toggle-pass{
+  position:absolute;
+  right:12px;
+  top:38px;
+  font-size:12px;
+  cursor:pointer;
+  color:#3b82f6;
 }
 
-.alert-error {
-  background: linear-gradient(135deg, #fef2f2, #fee2e2);
-  border: 1px solid #fecaca;
-  color: #991b1b;
+/* BUTTON */
+.login-btn{
+  width:100%;
+  padding:14px;
+  margin-top:15px;
+
+  border:none;
+  border-radius:12px;
+
+  background:linear-gradient(
+    90deg,#2563eb,#7c3aed
+  );
+
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
 }
 
-/* ===== LINKS ===== */
-.auth-links {
-  margin-top: 16px;
-  text-align: right;
+.login-btn:hover{
+  transform:translateY(-3px);
 }
 
-.auth-links a {
-  font-size: 14px;
-  color: #4f46e5;
-  font-weight: 500;
-  text-decoration: none;
+/* ERROR */
+.error-box{
+  background:#7f1d1d;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:15px;
+  font-size:13px;
 }
 
-.auth-links a:hover {
-  text-decoration: underline;
+/* LINKS */
+.login-links{
+  text-align:right;
+  margin-top:12px;
 }
 
-/* ===== FOOTER ===== */
-.auth-footer {
-  margin-top: 28px;
-  text-align: center;
-  font-size: 14px;
-  color: #64748b;
+.login-links a{
+  color:#60a5fa;
+  text-decoration:none;
+  font-size:13px;
 }
 
-.auth-footer a {
-  color: #4f46e5;
-  font-weight: 600;
-  text-decoration: none;
+.login-footer{
+  margin-top:25px;
+  text-align:center;
+  color:#94a3b8;
 }
 
-.auth-footer a:hover {
-  text-decoration: underline;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 480px) {
-  .auth-card {
-    padding: 28px 22px;
-  }
-
-  .auth-card h2 {
-    font-size: 22px;
-  }
-}
-
-.password-container {
-  position: relative;
-  width: 100%;
-}
-
-.password-container .auth-input {
-  width: 100%;
-  padding-right: 60px; /* Leaves room for the text so it doesn't overlap */
-}
-
-.toggle-button {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #007bff; /* Blue color, adjust to match your theme */
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.toggle-button:hover {
-  text-decoration: underline;
+.login-footer a{
+  color:#60a5fa;
+  margin-left:5px;
+  text-decoration:none;
 }

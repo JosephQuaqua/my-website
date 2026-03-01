@@ -1,98 +1,160 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import upiScanner from "../assets/upi-scanner.png"; 
+import upiScanner from "../assets/upi-scanner.png";
 import "../styles/payment.css";
 
 function SavingPayment() {
   const navigate = useNavigate();
   const today = new Date().toISOString().split("T")[0];
 
-  // State Variables
   const [amount, setAmount] = useState("");
   const [method, setMethod] = useState("Cash");
   const [paymentId, setPaymentId] = useState("");
-  const [screenshot, setScreenshot] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [showQR, setShowQR] = useState(false);
+
+  /* DOWNLOAD QR ONLY */
+  const downloadQR = () => {
+    const link = document.createElement("a");
+    link.href = upiScanner;
+    link.download = "UPI_QR.png";
+    link.click();
+  };
 
   const handleSubmit = () => {
-    if (!amount || amount <= 0) {
-      alert("Enter valid amount");
-      return;
-    }
+    if (!amount) return alert("Enter amount");
 
-    if (method === "Online" && !paymentId) {
-      alert("Please enter your Payment ID");
-      return;
-    }
+    if (method === "Online" && !paymentId)
+      return alert("Enter transaction ID");
 
-    alert("Saving submitted. Status: Pending Admin Verification");
+    alert("Payment Submitted ✅ Awaiting Verification");
     navigate("/savings");
   };
 
   return (
-    <div className="payment-container">
-      <h2>Savings Payment Application</h2>
+    <div className="payment-page">
 
-      {/* Date Input */}
-      <input type="date" value={today} readOnly />
+      <div className="payment-card">
 
-      {/* Amount Input */}
-      <input
-        type="number"
-        placeholder="Enter Amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      />
+        <div className="header">
+          <h2>Savings Payment</h2>
+          <p>Secure contribution payment</p>
+        </div>
 
-      {/* Payment Method Selector */}
-      <select value={method} onChange={(e) => setMethod(e.target.value)}>
-        <option value="Cash">Cash</option>
-        <option value="Online">Online</option>
-      </select>
+        {/* DATE */}
+        <div className="form-group">
+          <label>Date</label>
+          <input type="date" value={today} readOnly />
+        </div>
 
-      {/* UPI Section (Conditional) */}
-      {method === "Online" && (
-        <div className="upi-section">
-          <h4>Pay via UPI</h4>
-          <div className="upi-box">
-            <p><strong>UPI ID:</strong> yourname@upi</p>
-            
-            <img 
-              src={upiScanner} 
-              alt="UPI QR Code" 
-              className="upi-qr" 
-            />
+        {/* AMOUNT */}
+        <div className="form-group">
+          <label>Amount</label>
+          <input
+            type="number"
+            placeholder="₹ Enter amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </div>
 
-            <label className="input-label">Payment ID / Transaction ID</label>
-            <input
-              type="text"
-              placeholder="Enter ID here"
-              value={paymentId}
-              onChange={(e) => setPaymentId(e.target.value)}
-            />
+        {/* METHOD */}
+        <div className="form-group">
+          <label>Payment Method</label>
+          <select
+            value={method}
+            onChange={(e) => setMethod(e.target.value)}
+          >
+            <option>Cash</option>
+            <option>Online</option>
+          </select>
+        </div>
 
-            <label className="input-label">Upload Payment Screenshot</label>
-            <input
-              type="file"
-              accept="image/*"
-              className="file-input"
-              onChange={(e) => setScreenshot(e.target.files[0])}
-            />
+        {/* ONLINE PAYMENT */}
+        {method === "Online" && (
+          <div className="upi-card">
 
-            <p className="note">
-              After payment, click Submit Saving. Admin will verify transaction.
+            <div className="qr-area">
+
+              {/* CLICK = PREVIEW ONLY */}
+              <img
+                src={upiScanner}
+                alt="QR"
+                onClick={() => setShowQR(true)}
+              />
+              <br />
+
+              {/* DOWNLOAD BUTTON */}
+              <button onClick={downloadQR}>
+                Download QR
+              </button>
+
+            </div>
+
+            <p className="upi-id">
+              UPI ID: <strong>josephquaqua2004@oksbi</strong>
             </p>
+
+            {/* TRANSACTION */}
+            <div className="form-group">
+              <label>Transaction ID</label>
+              <input
+                type="text"
+                placeholder="Enter transaction reference"
+                value={paymentId}
+                onChange={(e) => setPaymentId(e.target.value)}
+              />
+            </div>
+
+            {/* SCREENSHOT */}
+            <div className="form-group">
+              <label>Upload Screenshot</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  setPreview(
+                    URL.createObjectURL(e.target.files[0])
+                  )
+                }
+              />
+            </div>
+
+            {preview && (
+              <div className="preview">
+                <img src={preview} alt="preview" />
+              </div>
+            )}
+
           </div>
+        )}
+
+         <button
+          className="back-btn"
+          onClick={() => navigate("/savings")}
+        >
+          Back
+        </button>
+
+        {/* BUTTONS */}
+        <button className="submit-btn" onClick={handleSubmit}>
+          Submit Payment
+        </button>
+
+       
+
+      </div>
+
+      {/* QR MODAL PREVIEW */}
+      {showQR && (
+        <div
+          className="qr-modal"
+          onClick={() => setShowQR(false)}
+        >
+          <img src={upiScanner} alt="QR Large" />
         </div>
       )}
 
-      {/* Action Buttons */}
-      <button className="submit-btn" onClick={handleSubmit}>
-        Submit Saving
-      </button>
-
-      <button className="back-btn" onClick={() => navigate("/savings")}>
-        Back to Savings
-      </button>
     </div>
   );
 }
